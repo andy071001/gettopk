@@ -1,13 +1,12 @@
 /*
-Description:ÒÑÖªÁ½¸öµÈ³¤µÄÉýÐòÕûÊýÐòÁÐ£ûa1, a2, ..., ak£ýºÍ{b1, b2, ..., bk}£¬ÇóÐòÁÐ{ai+bj}µÄÇ°kÐ¡ÔªËØ£¬
-ÆäÖÐ1¡Üi¡ÜkÇÒ1¡Üj¡Ük£¬ÒªÇóÊ±¼ä¸´ÔÓ¶È¾¡¿ÉÄÜµÍ 
+Description:ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½a1, a2, ..., akï¿½ï¿½ï¿½ï¿½{b1, b2, ..., bk}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{ai+bj}ï¿½ï¿½Ç°kÐ¡Ôªï¿½Ø£ï¿½
+ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½iï¿½ï¿½kï¿½ï¿½1ï¿½ï¿½jï¿½ï¿½kï¿½ï¿½Òªï¿½ï¿½Ê±ï¿½ä¸´ï¿½Ó¶È¾ï¿½ï¿½ï¿½ï¿½Üµï¿½ 
 Date:2012/10/11
 Author:Roger Liu
 */
 
 #include <stdio.h>
 
-#define INFINITESIMAL -65536
 
 struct heap_element{
     int a_element;
@@ -17,7 +16,7 @@ struct heap_element{
 typedef struct heap_element heap_element;
 
 int heapsize = 0;
-int * foo(int *, int *, int *, heap_element*, int);
+void foo(int *, int *, int *, heap_element*, int);
 void build_small_root_heap(heap_element *);
 void small_root_heapify(heap_element *, int);
 heap_element heap_extract_min(heap_element *);
@@ -34,7 +33,7 @@ int main()
     
     heap_element heap[16] = {0};
      
-    printf("ai+bjµÄÇ°%dÐ¡ÔªËØÎª£º\n", k);
+    printf("ai+bjï¿½ï¿½Ç°%dÐ¡Ôªï¿½ï¿½Îªï¿½ï¿½\n", k);
     foo(&a[0], &b[0], &result[0], &heap[0], 8); 
     
     for (i = 0; i < k; i++)
@@ -44,7 +43,7 @@ int main()
     return 0;
 }
 
-int * foo(int *a, int *b, int *result, heap_element *heap, int k)
+void foo(int *a, int *b, int *result, heap_element *heap, int k)
 {
     int i = 1;
     int j = 1;
@@ -64,7 +63,7 @@ int * foo(int *a, int *b, int *result, heap_element *heap, int k)
     heapsize = 2;
     build_small_root_heap(heap);
     while (heap != NULL && counter <= k){
-        h = heap_extract_min(heap);//µ¯³ö¶Ñ¶¥ÔªËØ
+        h = heap_extract_min(heap);//ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½Ôªï¿½ï¿½
         result[counter] = h.key;
         
         h1.a_element = h.a_element;
@@ -78,7 +77,7 @@ int * foo(int *a, int *b, int *result, heap_element *heap, int k)
         if (!h_exist(heap, h1))
             min_heap_insert(heap, h1);
         if (!h_exist(heap, h2))
-            min_heap_insert(heap, h2);//²åÈë(i+1,j,key)ºÍ£¨i,j+1,key£©£¬²åÈëÇ°ÒªÅÐ¶Ï²¢È¥ÖØ 
+            min_heap_insert(heap, h2);//ï¿½ï¿½ï¿½ï¿½(i+1,j,key)ï¿½Í£ï¿½i,j+1,keyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Òªï¿½Ð¶Ï²ï¿½È¥ï¿½ï¿½ 
         counter++;
     }
 }
