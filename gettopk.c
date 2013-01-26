@@ -1,6 +1,6 @@
 /*
-Description:��֪�����ȳ��������������У�a1, a2, ..., ak����{b1, b2, ..., bk}��������{ai+bj}��ǰkСԪ�أ�
-����1��i��k��1��j��k��Ҫ��ʱ�临�ӶȾ����ܵ� 
+Description:已知两个等长的升序整数序列｛a1, a2, ..., ak｝和{b1, b2, ..., bk}，求序列{ai+bj}的前k小元素，
+其中1≤i≤k且1≤j≤k，要求时间复杂度尽可能低 
 Date:2012/10/11
 Author:Roger Liu
 */
@@ -33,7 +33,7 @@ int main()
     
     heap_element heap[16] = {0};
      
-    printf("ai+bj��ǰ%dСԪ��Ϊ��\n", k);
+    printf("ai+bj的前%d小元素为：\n", k);
     foo(&a[0], &b[0], &result[0], &heap[0], 8); 
     
     for (i = 0; i < k; i++)
@@ -63,7 +63,7 @@ void foo(int *a, int *b, int *result, heap_element *heap, int k)
     heapsize = 2;
     build_small_root_heap(heap);
     while (heap != NULL && counter <= k){
-        h = heap_extract_min(heap);//�����Ѷ�Ԫ��
+        h = heap_extract_min(heap);//弹出堆顶元素
         result[counter] = h.key;
         
         h1.a_element = h.a_element;
@@ -77,7 +77,7 @@ void foo(int *a, int *b, int *result, heap_element *heap, int k)
         if (!h_exist(heap, h1))
             min_heap_insert(heap, h1);
         if (!h_exist(heap, h2))
-            min_heap_insert(heap, h2);//����(i+1,j,key)�ͣ�i,j+1,key��������ǰҪ�жϲ�ȥ�� 
+            min_heap_insert(heap, h2);//插入(i+1,j,key)和（i,j+1,key），插入前要判断并去重 
         counter++;
     }
 }
